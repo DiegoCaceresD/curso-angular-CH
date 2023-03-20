@@ -1,0 +1,8 @@
+footer{
+  background-color: #332B47;
+  height: var(--footer-height);
+}
+a{
+  text-decoration: none;
+  color: white;
+}

@@ -1,0 +1,6 @@
+div{
+  background-color: #D9EFED;
+  height: calc(100vh - var(--toolbar-height) - var(--footer-height));
+  color: black;
+  text-align: center;
+}

@@ -1,0 +1,5 @@
+aside{
+  background-color: #F7BBB0;
+  height: calc(100vh - var(--toolbar-height) - var(--footer-height));
+  color: black;
+}
