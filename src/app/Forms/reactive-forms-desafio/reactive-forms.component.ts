@@ -11,7 +11,7 @@ export class ReactiveFormsComponent implements OnInit {
   registerForm: FormGroup;
   nombre = new FormControl([], [Validators.required, Validators.minLength(3)]);
   apellido = new FormControl([], [Validators.required]);
-  email = new FormControl([], Validators.email);
+  email = new FormControl([], [Validators.email, Validators.required]);
   texto = new FormControl([], Validators.maxLength(50));
 
   constructor( public formBuilder : FormBuilder) {
@@ -31,8 +31,6 @@ export class ReactiveFormsComponent implements OnInit {
       this.registerForm.valid
     ){
     console.log(this.registerForm.value)
-    }else {
-      this.registerForm.invalid
     }
   }
 }
