@@ -1,0 +1,63 @@
+<div class=" container position-absolute top-50 start-50 translate-middle formulario bg-dark p-3 rounded">
+  <form
+    [formGroup]="registerForm"
+  (ngSubmit)="onSubmit()"
+  >
+    <div class="mb-3">
+      <label class="form-label text-white">Nombre</label>
+      <input
+        [formControl]="nombre"
+        type="text"
+        class="form-control"
+        [ngClass]="{'is-invalid' : nombre.invalid && nombre.touched }"
+      >
+      <div *ngIf="nombre.errors?.['required']" class="invalid-feedback">
+        Debe ingresar su nombre
+      </div>
+      <div *ngIf="nombre.errors?.['minlength']" class="invalid-feedback">
+        Su nombre debe tener más de 3 letras
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label text-white">Apellido</label>
+      <input
+        [formControl]="apellido"
+        type="text"
+        class="form-control "
+        [ngClass]="{'is-invalid' : apellido.invalid && apellido.touched }"
+      >
+      <div *ngIf="apellido.errors?.['required']" class="invalid-feedback">
+        Debe ingresar su apellido
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label text-white">Email </label>
+      <input
+        type="email"
+        class="form-control"
+        [formControl]="email"
+        [ngClass]="{'is-invalid' : email.invalid && email.touched }"
+        placeholder="name@example.com"
+      >
+      <div *ngIf="email.errors?.['email']" class="invalid-feedback">
+        Ingrese un email correcto
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label text-white">Texto</label>
+      <textarea
+        class="form-control"
+        [formControl]="texto"
+        [ngClass]="{'is-invalid' : texto.invalid && texto.touched}"
+        rows="3"
+      >
+      </textarea>
+      <div *ngIf="email.errors?.['maxlength']" class="invalid-feedback">
+        El máximo de caracteres permitido es 50
+      </div>
+    </div>
+    <button type="submit" class="btn btn-secondary">Enviar</button>
+  </form>
+</div>
+
+
