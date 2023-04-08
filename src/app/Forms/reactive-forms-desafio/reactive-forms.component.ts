@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
 
 @Component({
   selector: 'app-reactive-forms',
@@ -9,13 +17,13 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 export class ReactiveFormsComponent implements OnInit {
 
   registerForm: FormGroup;
-  nombre = new FormControl([], [Validators.required, Validators.minLength(3)]);
-  apellido = new FormControl([], [Validators.required]);
+  nombre = new FormControl([], [Validators.required, Validators.minLength(3), this.validadorPersonalizado()]);
+  apellido = new FormControl([], [Validators.required,Validators.minLength(3)]);
   email = new FormControl([], [Validators.email, Validators.required]);
   texto = new FormControl([], Validators.maxLength(50));
 
-  constructor( public formBuilder : FormBuilder) {
-    this.registerForm = formBuilder.group({
+  constructor() {
+    this.registerForm = new FormGroup({
       nombre : this.nombre,
       apellido : this.apellido,
       email : this.email,
@@ -31,6 +39,17 @@ export class ReactiveFormsComponent implements OnInit {
       this.registerForm.valid
     ){
     console.log(this.registerForm.value)
+    }
+  }
+
+  validadorPersonalizado(): ValidatorFn {
+    return (control:AbstractControl): ValidationErrors | null =>{
+      if (control.value.includes('superman')){
+        return {
+          validadorPersonal : true
+        }
+      }
+     return null;
     }
   }
 }
